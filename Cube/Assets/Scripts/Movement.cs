@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Movement : NetworkBehaviour
 {
-	[SerializeField] Transform playerCamera;
+	[SerializeField] Camera _camera;
 	[SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
 	[SerializeField] bool cursorLock = true;
 	[SerializeField] float mouseSensitivity = 3.5f;
@@ -25,8 +25,7 @@ public class Movement : NetworkBehaviour
 	CharacterController controller;
 	Vector2 currentDir;
 	Vector2 currentDirVelocity;
-	//Vector3 velocity;
-
+	
 	void Start()
 	{
 		controller = GetComponent<CharacterController>();
@@ -44,6 +43,14 @@ public class Movement : NetworkBehaviour
 		UpdateMouse();
 		UpdateMove();
 		UpdateAnimation();
+	}	
+
+	public override void OnNetworkSpawn()
+	{
+		Debug.Log("OnNetworkSpawn" + gameObject.name);
+		base.OnNetworkSpawn();
+		if (!IsOwner) return;  
+		_camera.enabled = true; 
 	}
 
 	void UpdateMouse()
@@ -56,7 +63,7 @@ public class Movement : NetworkBehaviour
 
 		cameraCap = Mathf.Clamp(cameraCap, -90.0f, 90.0f);
 
-		playerCamera.localEulerAngles = Vector3.right * cameraCap;
+		_camera.transform.localEulerAngles = Vector3.right * cameraCap;
 
 		transform.Rotate(Vector3.up * currentMouseDelta.x * mouseSensitivity);
 	}
