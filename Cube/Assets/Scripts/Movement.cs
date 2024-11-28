@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
 	[SerializeField] Transform playerCamera;
 	[SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
@@ -41,6 +40,7 @@ public class Movement : MonoBehaviour
 
 	void Update()
 	{
+		if (!IsOwner) return;
 		UpdateMouse();
 		UpdateMove();
 		UpdateAnimation();
