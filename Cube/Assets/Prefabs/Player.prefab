@@ -203,7 +203,7 @@ PrefabInstance:
       addedObject: {fileID: -7742858720353423999}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 71180cc5854a6ca48b7b9086b1af5520, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5972388454920332804}
+      addedObject: {fileID: 3559233429577452032}
     - targetCorrespondingSourceObject: {fileID: 5332809968238436118, guid: 71180cc5854a6ca48b7b9086b1af5520, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6570388084704164746}
@@ -327,12 +327,12 @@ MonoBehaviour:
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 0
+  SyncRotAngleX: 1
   SyncRotAngleY: 1
-  SyncRotAngleZ: 0
+  SyncRotAngleZ: 1
   SyncScaleX: 0
   SyncScaleY: 0
-  SyncScaleZ: 1
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -342,7 +342,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
---- !u!114 &5972388454920332804
+--- !u!114 &3559233429577452032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5797181102204472110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Script: {fileID: 11500000, guid: 71c0b17096ee10e4c8bf32907b9a8d8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TransitionStateInfoList: []
