@@ -47,7 +47,6 @@ public class Movement : NetworkBehaviour
 
 	public override void OnNetworkSpawn()
 	{
-		Debug.Log("OnNetworkSpawn" + gameObject.name);
 		base.OnNetworkSpawn();
 		if (!IsOwner) return;  
 		_camera.enabled = true; 
