@@ -32,8 +32,8 @@ public class Movement : NetworkBehaviour
 
 		if (cursorLock)
 		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = true;
+			//Cursor.lockState = CursorLockMode.Locked;
+			//Cursor.visible = true;
 		}
 	}
 
