@@ -23,7 +23,6 @@ public class DropSlot : MonoBehaviour, IDropHandler
 			if (eventData.pointerDrag == targetImage.gameObject)
 			{
 				_setGameObject = eventData.pointerDrag;
-				Debug.Log("Correct");
 			}
 			_dragAndDropGame.Check();
 		}
