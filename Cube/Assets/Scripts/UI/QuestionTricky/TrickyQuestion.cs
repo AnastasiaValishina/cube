@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TrickyQuestion : MonoBehaviour
 {
-	[SerializeField] TrickyButton[] _button;
+	[SerializeField] TrickyButton _correctButton;
+	[SerializeField] TrickyButton[] _wrongButtons;
 	[SerializeField] TextMeshProUGUI _winText;
 	[SerializeField] Button _closeBtn;
+
+	bool _pawSpawned = false;
 
 	private void Awake()
 	{
@@ -35,5 +37,16 @@ public class TrickyQuestion : MonoBehaviour
 	void Close()
 	{
 		Destroy(this.gameObject);
+	}
+
+	public void AnswerSelected(TrickyButton button)
+	{
+		if (button == _correctButton)
+		{
+			if (!_pawSpawned)
+				_wrongButtons[0].ShowPaw();
+
+			// fil animation
+		}
 	}
 }
