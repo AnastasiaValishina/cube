@@ -11,21 +11,13 @@ public class TrickyQuestion : MonoBehaviour
 	[SerializeField] Button _closeBtn;
 
 	bool _pawSpawned = false;
+	bool _gameOver = false;
 
 	private void Awake()
 	{
 		_closeBtn.onClick.AddListener(Close);
 		_winText.gameObject.SetActive(false);
 		_closeBtn.gameObject.SetActive(false);
-	}
-
-	public void Check()
-	{
-		//      foreach (var slot in _dropSlots)
-		//      {
-		//	if (!slot.IsCorrect()) return;
-		//      }
-		//Win();
 	}
 
 	void Win()
@@ -39,14 +31,37 @@ public class TrickyQuestion : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 
-	public void AnswerSelected(TrickyButton button)
+	public void TriggerPaw(TrickyButton button)
 	{
 		if (button == _correctButton)
 		{
 			if (!_pawSpawned)
+			{
 				_wrongButtons[0].ShowPaw();
-
-			// fil animation
+				_pawSpawned = true;
+			}
 		}
+	}
+
+	public void SendAnswer(TrickyButton button)
+	{
+		if (_gameOver) return;
+
+		if (button == _correctButton)
+		{
+			Win();
+		}
+		else 
+		{
+			Lose();
+		}
+		_gameOver = true;
+	}
+
+	private void Lose()
+	{
+		_winText.gameObject.SetActive(true);
+		_winText.text = "You lost!";
+		_closeBtn.gameObject.SetActive(true);
 	}
 }
