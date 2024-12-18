@@ -713,6 +713,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2409173485393261178, guid: dbd301cb6df143647b5c49fd8aaeeb15, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8316866510614038550, guid: dbd301cb6df143647b5c49fd8aaeeb15, type: 3}
       propertyPath: m_Name
       value: ButtonPaw
