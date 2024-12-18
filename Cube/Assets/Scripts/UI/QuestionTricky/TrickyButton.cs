@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,14 +35,18 @@ public class TrickyButton : MonoBehaviour
 
 	private void OnButtonClick()
 	{
-		if (!_pawTriggered)
+        if (_trickyQuestion.GameOver) return;
+        if (!_pawTriggered)
 		{
-			_trickyQuestion.TriggerPaw(this);
+			_trickyQuestion.TriggerPawIfCorrect(this);
 			_pawTriggered = true;
 		}
 
         _tapAnimator.transform.position = Input.mousePosition;
-        ShowFillAndTap();
+        _tapAnimator.Tap();
+
+        _trickyQuestion.CheckAnswer(this);
+        ShowFill();
     }
 
     public void ShowPaw()
@@ -67,16 +72,15 @@ public class TrickyButton : MonoBehaviour
     {
         _taps++;
         if (_taps % 2 == 0) return;
+        _tapAnimator.Tap();
 
-        ShowFillAndTap();
+        ShowFill();
     }
 
-    private void ShowFillAndTap()
+    private void ShowFill()
     {
         float currentFill = _fillImage.fillAmount;
         _fillImage.fillAmount = Mathf.Clamp01(currentFill + 0.05f);
-
-        _tapAnimator.Tap();
 
         if (Mathf.Approximately(currentFill, 1f))
         {
@@ -89,4 +93,10 @@ public class TrickyButton : MonoBehaviour
 		DOTween.Kill(_paw.rectTransform);
 		_trickyQuestion.SendAnswer(this);
 	}
+
+    public void ShowLose()
+    {
+        _fillImage.color = Color.red;
+        _fillImage.fillAmount = 1;
+    }
 }

@@ -13,7 +13,9 @@ public class TrickyQuestion : MonoBehaviour
 	bool _pawSpawned = false;
 	bool _gameOver = false;
 
-	private void Awake()
+    public bool GameOver { get => _gameOver; private set => _gameOver = value; }
+
+    private void Awake()
 	{
 		_closeBtn.onClick.AddListener(Close);
 		_winText.gameObject.SetActive(false);
@@ -31,8 +33,10 @@ public class TrickyQuestion : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 
-	public void TriggerPaw(TrickyButton button)
+	public void TriggerPawIfCorrect(TrickyButton button)
 	{
+		//if (GameOver) return;
+
 		if (button == _correctButton)
 		{
 			if (!_pawSpawned)
@@ -45,7 +49,7 @@ public class TrickyQuestion : MonoBehaviour
 
 	public void SendAnswer(TrickyButton button)
 	{
-		if (_gameOver) return;
+		if (GameOver) return;
 
 		if (button == _correctButton)
 		{
@@ -55,7 +59,7 @@ public class TrickyQuestion : MonoBehaviour
 		{
 			Lose();
 		}
-		_gameOver = true;
+		GameOver = true;
 	}
 
 	private void Lose()
@@ -64,4 +68,16 @@ public class TrickyQuestion : MonoBehaviour
 		_winText.text = "You lost!";
 		_closeBtn.gameObject.SetActive(true);
 	}
+
+    public void CheckAnswer(TrickyButton button)
+    {
+        if (GameOver) return;
+
+        if (button != _correctButton)
+        {
+			button.ShowLose();
+            Lose();
+			GameOver = true;
+        }
+    }
 }
